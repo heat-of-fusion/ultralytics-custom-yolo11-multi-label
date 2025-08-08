@@ -1,0 +1,88 @@
+names:
+  # Label0: 9, pose
+  - unknown
+  - stand
+  - sit
+  - prone
+  - supine
+  - left_late
+  - right_late
+  - bow
+  - squat
+
+  # Label1: 11, interact
+  - unknown
+  - none
+  - bed
+  - chair
+  - wheel
+  - walker
+  - pole
+  - stick
+  - fridge
+  - rail
+  - corridor
+
+  # Label2: 4, class
+  - unknown
+  - patient
+  - ordinary
+  - medical
+
+  # Label3: 5, age
+  - adult
+  - child
+  - baby
+  - old
+  - unknown
+
+  # Label4: 3, sex
+  - unknown
+  - man
+  - woman
+
+  # Label5: 5, action
+  - unknown
+  - eat
+  - toilet
+  - rest
+  - door
+
+nc: 37
+nl: 6
+
+main_idx: 2
+
+sub_idxs:
+  - 0
+  - 1
+  # - 2
+  - 3
+  - 4
+  - 5
+
+# Starting indeces of each label
+start_idxs:
+  - 0
+  - 9
+  - 20
+  - 24
+  - 29
+  - 32
+
+# Number of class of each label
+ncs:
+  - 9
+  - 11
+  - 4
+  - 5
+  - 3
+  - 5
+
+kpt_shape:
+  - 15
+  - 3
+
+train: /vida/falldown/yolo-mmpatient-new/train/images
+test: /vida/falldown/yolo-mmpatient-new/test/images
+val: /vida/falldown/yolo-mmpatient-new/valid/images
