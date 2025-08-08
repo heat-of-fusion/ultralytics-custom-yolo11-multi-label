@@ -81,18 +81,23 @@ def filter_anchors(bboxes, scores, kpts, data, threshold = 0.5):
     # # Get the maximum score among total classes # Method:V0
     # max_scores, _ = scores.max(dim = 2)
 
-    # # Get the maximum score among total classes # Method:V1
-    max_scores = list()
-    for idx in range(len(data['ncs'])):
-        _max_scores, _ = scores[..., data['start_idxs'][idx]: data['start_idxs'][idx] + data['ncs'][idx]].max(dim=2, keepdim = True)
-        max_scores.append(_max_scores)
+    # # Get the maximum scores from each sub-labels and averaging them  # Method:V1
+    # max_scores = list()
+    # for idx in range(len(data['ncs'])):
+    #     _max_scores, _ = scores[..., data['start_idxs'][idx]: data['start_idxs'][idx] + data['ncs'][idx]].max(dim=2, keepdim = True)
+    #     max_scores.append(_max_scores)
+    #
+    # max_scores = torch.cat(max_scores, dim=-1).mean(dim=-1)
 
-    max_scores = torch.cat(max_scores, dim=-1).mean(dim=-1)
-
-    # Get the maximum score of the main label # Method:V2
-    # M_LBL = data['main_idx']
+    # Get the maximum score of certain sub-label # Method:V2
+    # M_LBL = 2
     # M_IDX = data['start_idxs'][M_LBL]
     # max_scores, _ = scores[..., M_IDX : M_IDX + data['ncs'][M_LBL]].max(dim = 2)
+
+    # Get the maximum score of the main label # Method:V3
+    M_LBL = data['main_idx']
+    M_IDX = data['start_idxs'][M_LBL]
+    max_scores, _ = scores[..., M_IDX : M_IDX + data['ncs'][M_LBL]].max(dim = 2)
 
     # Buffer to save filtered predictions
     filtered_bboxes_list = list()

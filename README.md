@@ -53,7 +53,7 @@
 
 ### Training
 - You need to modify ```train.py``` according to your settings.
-  - ```./data_mmpatient_full.yaml'``` -> Name of your dataset configuration file.
+  - ```f'./data_mmpatient_full.yaml'``` -> Name of your dataset configuration file.
     ```
       data = yaml.safe_load(open(f'./data_mmpatient_full.yaml', 'rb'))
     ```
